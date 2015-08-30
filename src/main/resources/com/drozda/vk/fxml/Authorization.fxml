@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.web.WebView?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity" minWidth="-Infinity" prefHeight="158.0" prefWidth="247.0"
+            xmlns="http://javafx.com/javafx/8" fx:controller="com.drozda.vk.controller.AuthorizationController">
+    <children>
+        <WebView fx:id="browser" layoutX="24.0" layoutY="14.0" prefHeight="158.0" prefWidth="247.0"
+                 AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                 AnchorPane.topAnchor="0.0"/>
+    </children>
+</AnchorPane>
