@@ -119,7 +119,7 @@ public class MainApp extends Application {
                 "client_id=" + APP_ID + "&" +
                 "scope=audio&" +
                 "redirect_uri=http://oauth.vk.com/blank.html&" +
-                "display=wap&" +
+                "display=popup&" +
                 "response_type=token" +
                 "&v=5.37");
         //  System.out.println(webEngine.getLocation());

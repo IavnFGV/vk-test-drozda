@@ -1,6 +1,7 @@
 package com.drozda.vk.controller;
 
 import com.drozda.vk.MainApp;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;
@@ -8,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import netscape.javascript.JSException;
 
 /**
  * Created by GFH on 30.08.2015.
@@ -30,6 +32,7 @@ public class AuthorizationController {
                     public void changed(ObservableValue<? extends Worker.State> observable, Worker.State oldValue, Worker.State newValue) {
                         System.out.println(newValue);
                         if (newValue == Worker.State.SUCCEEDED) {
+                            adjustSize();
                             System.out.println(webEngine.getLocation());
                             String s = webEngine.getLocation();
                             if (s.contains("#access_token")) {
@@ -46,6 +49,39 @@ public class AuthorizationController {
                 });
     }
 
+    private void adjustSize() {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Stage stage = MainApp.getInstance().getStage(MainApp.AUTH_STAGE);
+                    Object result = browser.getEngine().executeScript(
+                            "document.body.scrollHeight"
 
+//                            "document.getElementById('mydiv').offsetHeight"
+                    );
+                    if (result instanceof Integer) {
+                        Integer i = (Integer) result;
+                        double height = new Double(i);
+                        height = height + 20;
+                        stage.setHeight(height);
+                    }
+                    result = browser.getEngine().executeScript(
+                            "document.body.scrollWidth"
+
+//                            "document.getElementById('mydiv').offsetHeight"
+                    );
+                    if (result instanceof Integer) {
+                        Integer i = (Integer) result;
+                        double width = new Double(i);
+                        width = width + 20;
+                        stage.setWidth(width);
+                    }
+                } catch (JSException e) {
+                    // not important
+                }
+            }
+        });
+    }
 }
 
