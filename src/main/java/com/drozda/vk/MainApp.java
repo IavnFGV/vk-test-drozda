@@ -30,6 +30,7 @@ public class MainApp extends Application {
     public static int APP_ID = XXX;
     public static String TOKEN;
     public static String USER_ID;
+    public static String CUR_API = "5.37";
 
     private static MainApp instance;
     private Map<String, Scene> sceneMap = new HashMap();
@@ -118,14 +119,15 @@ public class MainApp extends Application {
                 "client_id=" + APP_ID + "&" +
                 "scope=audio&" +
                 "redirect_uri=http://oauth.vk.com/blank.html&" +
-                "display=page&" +
-                "response_type=token");
+                "display=wap&" +
+                "response_type=token" +
+                "&v=5.37");
         //  System.out.println(webEngine.getLocation());
     }
 
     public void showAudio() {
         changeScene(AUDIO_STAGE, AUDIO_CONTROLLER);
         showStage(AUDIO_STAGE);
-        ((AudioController) getController(AUDIO_CONTROLLER)).getAudio1();
+        ((AudioController) getController(AUDIO_CONTROLLER)).getAudio();
     }
 }
