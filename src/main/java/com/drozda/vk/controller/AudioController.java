@@ -12,8 +12,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,7 +23,7 @@ import java.util.List;
 public class AudioController {
 
     private int audioCount;
-    private List<VKAudio> vkAudios = new ArrayList<VKAudio>();
+    private List<VKAudio> VKAudios = new ArrayList<VKAudio>();
 
     public void getAudio() {
 
@@ -49,15 +47,15 @@ public class AudioController {
 //                Reader reader = new InputStreamReader(entity.getContent(), charset);
                 StringBuilder sb = new StringBuilder(EntityUtils.toString(entity));
 
-                JSONObject obj = new JSONObject(sb.toString());
-                JSONObject jsonResponse = obj.getJSONObject("response");
-                setAudioCount(jsonResponse.getInt("count"));
-                JSONArray items = jsonResponse.getJSONArray("items");
-                for (int i = 0; i < items.length(); i++) {
-                    vkAudios.add(VKAudio.createFromJSON(items.getJSONObject(i)));
-                }
-
-                return vkAudios.get(3);
+                //  JSONObject obj = new JSONObject(sb.toString());
+                //      JSONObject jsonResponse = obj.getJSONObject("response");
+                //      setAudioCount(jsonResponse.getInt("count"));
+                //       JSONArray items = jsonResponse.getJSONArray("items");
+                //       for (int i = 0; i < items.length(); i++) {
+                //                vkAudios.add(VkAudio.createFromJSON(items.getJSONObject(i)));
+                //            }
+                VKAudios = com.drozda.vk.json.Utils.getAudioListFromJson(sb.toString());
+                return VKAudios.get(3);
             }
         };
         try {

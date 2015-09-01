@@ -31,13 +31,14 @@ public class MainApp extends Application {
     public static String TOKEN;
     public static String USER_ID;
     public static String CUR_API = "5.37";
-
     private static MainApp instance;
     private Map<String, Scene> sceneMap = new HashMap();
-
     private Map<String, Stage> stageMap = new HashMap();
-
     private Map<String, Object> controllerMap = new HashMap();
+
+    public static boolean isLoggedIn() {
+        return TOKEN != null;
+    }
 
     public static MainApp getInstance() {
         return instance;

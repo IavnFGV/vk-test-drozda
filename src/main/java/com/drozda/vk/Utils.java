@@ -14,8 +14,8 @@ public class Utils {
     }
 
     public static URI getUriAudio(String ownerId, String accessToken) {
-        if (MainApp.TOKEN == null) {
-            throw new IllegalStateException("App does not logged on!!!");
+        if (!MainApp.isLoggedIn()) {
+            throw new IllegalStateException("App does not logged in!!!");
         }
         try {
             return new URIBuilder()
